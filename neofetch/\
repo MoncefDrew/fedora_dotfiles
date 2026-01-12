@@ -1,0 +1,19 @@
+# See this wiki page for more info:
+# https://github.com/dylanaraps/neofetch/wiki/Customizing-Info
+print_info() {
+    info title
+    # info underline
+
+    info "Distro" distro
+    info "Kernel" kernel
+    info "Packages" packages
+    info "Shell" shell
+    info "WM" wm
+    info "CPU" cpu
+    prin "GPU" "AMD ATI Radeon RX 7600"
+
+}
+
+ascii_distro="artix_small"
+separator=" "
+

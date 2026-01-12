@@ -1,0 +1,173 @@
+#    ██████  █     █░ ▄▄▄     ▓██   ██▓  █████▒▒██   ██▒
+#  ▒██    ▒ ▓█░ █ ░█░▒████▄    ▒██  ██▒▓██   ▒ ▒▒ █ █ ▒░
+#  ░ ▓██▄   ▒█░ █ ░█ ▒██  ▀█▄   ▒██ ██░▒████ ░ ░░  █   ░
+#    ▒   ██▒░█░ █ ░█ ░██▄▄▄▄██  ░ ▐██▓░░▓█▒  ░  ░ █ █ ▒
+#  ▒██████▒▒░░██▒██▓  ▓█   ▓██▒ ░ ██▒▓░░▒█░    ▒██▒ ▒██▒
+#  ▒ ▒▓▒ ▒ ░░ ▓░▒ ▒   ▒▒   ▓▒█░  ██▒▒▒  ▒ ░    ▒▒ ░ ░▓ ░
+#  ░ ░▒  ░ ░  ▒ ░ ░    ▒   ▒▒ ░▓██ ░▒░  ░      ░░   ░▒ ░
+#  ░  ░  ░    ░   ░    ░   ▒   ▒ ▒ ░░   ░ ░     ░    ░
+#        ░      ░          ░  ░░ ░              ░    ░
+#                              ░ ░
+
+### Variables ############################################################
+set $mod Mod4
+set $term kitty
+set $menu fuzzel
+set $browser firefox
+
+### Startup #############################################################
+exec --no-startup-id waybar
+exec --no-startup-id autotiling
+exec --no-startup-id nm-applet
+# Disable laptop screen
+output eDP-1 disable
+
+### Appearance ##########################################################
+set $bg  #151515
+set $bg2 #1f1f1f
+set $fg  #e8e8d3
+set $fg2 #888888
+set $red #cf6a4c
+
+client.focused            $fg2 $fg2 $bg2 $fg2 $fg2
+client.focused_inactive   $bg2 $bg2 $fg2 $bg2 $bg2
+client.unfocused          $bg2 $bg2 $fg2 $bg2 $bg2
+client.urgent             $red $red $bg2 $red $red
+client.placeholder        #000000 #000000 $fg #000000 #000000
+client.background         #000000
+
+font pango:FiraCode Nerd Font 11
+### Background ##########################################################
+output "*" bg ~/Pictures/wallpapers/Gustave_Dore_-_Death_on_the_Pale_Horse_resized.png fill
+
+# Gaps
+gaps inner 6
+gaps outer 8
+#smart_gaps on
+
+
+#corner_radius 5
+
+#shadows enable
+#shadows_on_csd disable
+#shadow_blur_radius 25
+
+for_window [class="^.*"] border pixel 2
+default_floating_border pixel 1
+seat seat0 xcursor_theme Bibata-Modern-Classic 22
+
+### Window rules ########################################################
+for_window [class="Gimp-2.10"] floating enable
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
+for_window [app_id="wdisplays"] floating enable
+for_window [app_id="blueman-manager"] floating enable
+
+### Input ###############################################################
+input type:keyboard {
+    xkb_layout us
+}
+
+### Key bindings ########################################################
+
+# Terminal
+bindsym $mod+Return exec $term
+
+# Menu
+bindsym $mod+space exec $menu
+
+# Wallpaper
+bindsym $mod+b exec ~/.config/sway/scripts/wallpaper
+
+# Kill window
+bindsym $mod+q kill
+
+# Audio
+bindsym XF86AudioLowerVolume exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"
+bindsym XF86AudioRaiseVolume exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+"
+bindsym XF86AudioMute exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+bindsym XF86AudioMicMute exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+
+## window rules
+# New windows go into the focused container
+focus_follows_mouse no
+
+# Floating modifier
+floating_modifier $mod normal
+
+# Exit / reload
+bindsym $mod+Shift+q exit
+bindsym $mod+Shift+r reload
+
+# Focus movement
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# Move windows
+bindsym $mod+Ctrl+Left  move left
+bindsym $mod+Ctrl+Down  move down
+bindsym $mod+Ctrl+Up    move up
+bindsym $mod+Ctrl+Right move right
+
+
+# Select region screenshot, save + copy + notify
+bindsym $mod+Shift+s exec sh -c 'FILE=~/Pictures/Screenshots/screenshot_$(date +%Y%m%d_%H%M%S).png;grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE" && notify-send "Screenshot saved & copied to clipboard" -i "$FILE"'
+
+### Workspaces ##########################################################
+
+# Switch
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym Control+Mod1+Right workspace next
+bindsym Control+Mod1+Left  workspace prev
+
+# Move container
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+### Resize mode #########################################################
+mode "resize" {
+    bindsym Left  resize shrink width 10px
+    bindsym Down  resize grow height 10px
+    bindsym Up    resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### Layout ##############################################################
+bindsym $mod+h splith
+bindsym $mod+v splitv
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+Tab focus mode_toggle
+bindsym $mod+a focus parent
+
+### Includes ############################################################
+include /etc/sway/config.d/*
+

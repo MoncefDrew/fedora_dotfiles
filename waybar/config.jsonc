@@ -1,0 +1,190 @@
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 32, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "sway/workspaces",
+        "custom/divider",
+        "sway/window",
+        "custom/divider",
+        "tray",
+	"custom/divider",
+	"bluetooth",
+    ],
+    "modules-center": [
+	"sway/window"
+],
+    "modules-right": [
+	"custom/ip",
+	"custom/divider",
+        "cpu",
+        "custom/divider",
+        "memory",
+        "custom/divider",
+        //"pulseaudio",
+        //"custom/divider",
+        //"sway/language",
+        //"custom/divider",
+        "clock",
+    ],
+    "sway/workspaces": {
+         "disable-scroll": true,
+         "all-outputs": true,
+         "warp-on-scroll": false,
+         "format": "{icon}",
+         "format-icons": {
+             "1": "1",
+             "2": "2",
+             "3": "3",
+             "4": "4",
+             "5": "5",
+             "6": "6",
+             "7": "7",
+             "8": "8",
+             "9": "9",
+         }
+     },
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%A, %B %d}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%d/%m/%y - %H:%M}"
+    },
+    "cpu": {
+        "format": "CPU {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "Mem {used}G/{total}G",
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid}",
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "format-disconnected": "Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "Vol: {volume}%",
+        "on-click": "pavucontrol"
+    },
+    "custom/divider": {
+         "format": "|"
+         },
+     "custom/invisdivider": {
+         "format": " "
+         },
+    "image#gentoo": {
+        "path": "/home/sougato/Pictures/gentoo.png",
+        "size": 20,
+        },
+    "sway/window": {
+        "format": "{title}",
+        "max-length": 50,
+        "rewrite": {
+            "(.*) — Zen Browser": "Zen",
+            "Zen Browser": "Zen",
+            "(.*) Emacs": "Doom",
+            "(.*) ~": "Alacritty",
+            "~": "Alacritty"
+        }
+    },
+    "custom/ip": {
+    "exec": "curl -s ifconfig.me",
+    "interval": 300,
+    "format": "IP {}",
+    "tooltip": false
+	},
+    "bluetooth": {
+     "format": " {status}",
+     "format-disabled": " off",
+     "format-connected": " {device_alias}",
+     "tooltip": true,
+     "on-click": "blueman-manager"
+},
+"sway/window": {
+    "format": "{title}",
+    "max-length": 50,
+    "rewrite": {
+        "(.*) — Zen Browser": "Zen",
+        "Zen Browser": "Zen",
+        "(.*) Emacs": "Doom",
+        "(.*) ~": "Alacritty",
+        "~": "Alacritty"
+    }
+}
+
+
+
+}
