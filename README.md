@@ -1,6 +1,11 @@
+
 # Fedora Dotfiles (Sway Setup)
 
 Hello, this is my new dotfiles repository for the GOAT distro: **Fedora**.
+
+<img width="1920" height="1080" alt="screenshot_20260125_222111" src="https://github.com/user-attachments/assets/272146cc-ee39-41e5-b708-3ba4aa2bf713" />
+<img width="1920" height="1080" alt="screenshot_20260125_222017" src="https://github.com/user-attachments/assets/6b5e736a-ab9c-44b9-a70c-27b0510d14cd" />
+<img width="1920" height="1080" alt="screenshot_20260125_223543" src="https://github.com/user-attachments/assets/33c861d8-c61a-4f46-a233-b9722c8096a8" />
 
 I started with **GNOME**, but ended up setting up **Sway**. It is far less resource-consuming and extremely minimalist.
 
