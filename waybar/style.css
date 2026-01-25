@@ -1,150 +1,162 @@
-/* This config is a modified version of DT's config. You can find it here: https://gitlab.com/dwt1/dotfiles/-/blob/master/.config/waybar/style.css?ref_type=heads */
-
 * {
-    border: none;
-    border-radius: 0;
-    min-height: 0;
-    font-family: JetBrains Mono Nerd Font;
-    font-size: 13px;
-    font-weight: bold;
-
+  font-family: JetbrainsMono Nerd Font;
+  font-size: 15px;
+  padding-left: 2px;
+  margin: 0px 2px;
+  padding-bottom: 0px;
 }
 
-window#waybar {
-    background-color: #0d0d0d;
-    color: #c5c8c6;
-    transition-property: background-color;
-    transition-duration: 0.5s;
-}
-
-window#waybar.hidden {
-    opacity: 0.5;
+#waybar {
+  background: transparent;
+  color: #c6d0f5;
 }
 
 #workspaces {
-    background-color: transparent;
+  border-radius: 5px 0px 0px 5px;
+  margin: 2px 0px ;
+  background: #101010;
+  padding-right: 2px;
 }
 
 #workspaces button {
-    all: initial;
-    /* Remove GTK theme values (waybar #1351) */
-    min-width: 0;
-    /* Fix weird spacing in materia (waybar #450) */
-    box-shadow: inset 0 -3px transparent;
-    /* Use box-shadow instead of border so the text isn't offset */
-    padding: 2px 8px;
-    margin: 4px 3px;
-    border-radius: 0px;
+  color: #babbf1;
+  border-radius: 5px;
+  padding: 0.4rem;
 }
 
-
 #workspaces button.active {
-    /* box-shadow: inset 0 -2px #c678dd; */
+  color: #99d1db;
+  border-radius: 0px 5px 5px 0px;
+}
+
+button {
+  background: transparent;
 }
 
 #workspaces button:hover {
-    box-shadow: inherit;
-    text-shadow: inherit;
+  background: #1e1e1e;
+  border: 0px solid transparent;
 }
-
-#workspaces button.urgent {
-    background-color: #f38ba8;
+#window {
+  border-radius: 0px 5px 5px 0px;
 }
-
+#custom-music,
+#tray,
+#backlight,
+#custom-clock,
+#battery,
+#pulseaudio,
+#custom-network,
 #cpu,
 #memory,
-#custom-kernel,
+#window,
+#custom-ip,
+#custom-lock,
+#custom-weather,
+#custom-uptime,
 #custom-power,
-#custom-diskfree,
-#battery,
-#backlight,
-#wireplumber,
-#network,
-#clock,
-#language,
-#pulseaudio,
-#tray {
-    border-radius: 4px;
-    margin: 4px 3px;
-    padding: 2px 2px;
+#custom-docker {
+  background-color: #101010;
+  padding: 0.5rem 1rem;
+  margin: 2px 0;
 }
 
-#cpu {
+#custom-clock {
+  color: #c6d0f5;
+  border-radius: 5px;
 }
 
-
-#memory {
+#custom-weather {
+  color: #8caaee;
+  margin-left: 0.5rem;
+  border-radius: 5px;
 }
 
 #battery {
-    /* background-color: #f38ba8; */
-}
-
-#battery.warning,
-#battery.critical,
-#battery.urgent {
-    background-color: #ff6c6b;
-    color: #f1fa8c;
+  color: #c6d0f5;
 }
 
 #battery.charging {
-    background-color: #98be65;
-    color: #181825;
+  color: #c6d0f5;
+}
+
+#battery.warning:not(.charging) {
+  color: #e78284;
 }
 
 #backlight {
-    background-color: #ff6c6b;
+  color: #e5c890;
 }
 
-#wireplumber {
-    background-color: #46d9ff;
+#backlight,
+#battery {
+  border-radius: 0;
 }
 
 #pulseaudio {
-   color: #c678dd
+  color:#c6d0f5 ;
+  border-radius: 5px 0px 0px 5px;
 }
 
-#network {
-    color: #c678dd;
+#custom-docker {
+  color: #85c1dc;
 }
 
-#language {
-    color: #a9a1e1
+#custom-music {
+  color: #ca9ee6;
+  border-radius: 5px;
 }
 
-#clock {
-    padding-right: 10px
+#custom-lock {
+  color: #babbf1;
 }
 
-#custom-divider {
-    font-family: Ubuntu Mono;
-    color: #282c34;
-    font-size: 14px;
-    /* font-weight: bold; */
+#custom-power {
+  margin-right:3px;
+  border-radius: 0px 5px 5px 0px;
+  color: #e78284;
 }
-
-tooltip {
-    border-radius: 8px;
-    padding: 15px;
-    background-color: #131822;
-}
-
-tooltip label {
-    padding: 5px;
-    background-color: #131822;
-} 
-
-#bluetooth {
-    color: #61afef;
-}
-
 #custom-ip {
-    color: #98c379;
+  padding: 0 5px;
+  color: #c6d0f5;
 }
 
-#sway-window {
-    font-weight: bold;
-    color: #e5c07b;
+#custom-docker.docker {
+  color: #85c1dc;
 }
 
+#custom-docker.docker-none {
+  color: #737994;
+}
 
+#custom-docker.docker-error {
+  color: #e78284;
+}
+
+#custom-weather.clear {
+  color: #e5c890; /* Sunny yellow */
+}
+
+#custom-weather.cloud {
+  color: #99d1db; /* Light blue */
+}
+
+#custom-weather.rain {
+  color: #8caaee; /* Blue */
+}
+
+#custom-weather.snow {
+  color: #c6d0f5; /* White-ish */
+}
+
+#custom-weather.thunder {
+  color: #ca9ee6; /* Purple */
+}
+
+#custom-weather.fog {
+  color: #b0b4bc; /* Gray */
+}
+
+#custom-weather.error {
+  color: #e78284; /* Red */
+}

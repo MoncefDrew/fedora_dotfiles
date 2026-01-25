@@ -1,190 +1,138 @@
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 32, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
+    "layer": "top",
+    "position": "top",
     "modules-left": [
         "sway/workspaces",
-        "custom/divider",
-        "sway/window",
-        "custom/divider",
-        "tray",
-	"custom/divider",
-	"bluetooth",
+        "sway/window"
     ],
     "modules-center": [
-	"sway/window"
-],
+        "custom/clock",
+        "custom/weather"
+    ],
     "modules-right": [
-	"custom/ip",
-	"custom/divider",
+        "pulseaudio",
+        "backlight",
+        "battery",
         "cpu",
-        "custom/divider",
         "memory",
-        "custom/divider",
-        //"pulseaudio",
-        //"custom/divider",
-        //"sway/language",
-        //"custom/divider",
-        "clock",
+        "custom/ip",
+        "custom/docker",
+        "custom/lock",
+        "custom/power"
     ],
     "sway/workspaces": {
-         "disable-scroll": true,
-         "all-outputs": true,
-         "warp-on-scroll": false,
-         "format": "{icon}",
-         "format-icons": {
-             "1": "1",
-             "2": "2",
-             "3": "3",
-             "4": "4",
-             "5": "5",
-             "6": "6",
-             "7": "7",
-             "8": "8",
-             "9": "9",
-         }
-     },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "idle_inhibitor": {
+        "all-outputs": true,
+        "disable-scroll": true,
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "9": "",
+            "10": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        },
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
         }
     },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
+    //   DATE — WORDS + ALGERIA
+    "custom/clock": {
+        "exec": "LC_TIME=en_US.UTF-8 TZ=Africa/Algiers date '+%A %d %B %Y %H:%M'",
+        "interval": 1,
+        "format": "{}",
+        "tooltip": true
     },
-    "clock": {
-        "tooltip-format": "<big>{:%A, %B %d}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%d/%m/%y - %H:%M}"
-    },
-    "cpu": {
-        "format": "CPU {usage}%",
+    //   NETWORK — ICON + IP
+    "custom/ip": {
+        "exec": "~/.config/waybar/scripts/getipaddr.sh",
+        "interval": 30,
+        "format": "󰈀 {}",
         "tooltip": false
     },
-    "memory": {
-        "format": "Mem {used}G/{total}G",
+    //   BATTERY
+    "battery": {
+        "interval": 30,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "tooltip": true
     },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid}",
-        "format-ethernet": "{ipaddr}/{cidr}",
-        "format-disconnected": "Disconnected",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
+    //   AUDIO
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "Vol: {volume}%",
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
         "on-click": "pavucontrol"
     },
-    "custom/divider": {
-         "format": "|"
-         },
-     "custom/invisdivider": {
-         "format": " "
-         },
-    "image#gentoo": {
-        "path": "/home/sougato/Pictures/gentoo.png",
-        "size": 20,
-        },
-    "sway/window": {
-        "format": "{title}",
-        "max-length": 50,
-        "rewrite": {
-            "(.*) — Zen Browser": "Zen",
-            "Zen Browser": "Zen",
-            "(.*) Emacs": "Doom",
-            "(.*) ~": "Alacritty",
-            "~": "Alacritty"
-        }
+    //   SYSTEM
+    "cpu": {
+        "interval": 1,
+        "format": " {usage}%"
     },
-    "custom/ip": {
-    "exec": "curl -s ifconfig.me",
-    "interval": 300,
-    "format": "IP {}",
-    "tooltip": false
-	},
-    "bluetooth": {
-     "format": " {status}",
-     "format-disabled": " off",
-     "format-connected": " {device_alias}",
-     "tooltip": true,
-     "on-click": "blueman-manager"
-},
-"sway/window": {
-    "format": "{title}",
-    "max-length": 50,
-    "rewrite": {
-        "(.*) — Zen Browser": "Zen",
-        "Zen Browser": "Zen",
-        "(.*) Emacs": "Doom",
-        "(.*) ~": "Alacritty",
-        "~": "Alacritty"
+    "memory": {
+        "interval": 30,
+        "format": " {used:0.1f}G/{total:0.1f}G"
+    },
+    //   LOCK
+    "custom/lock": {
+        "tooltip": false,
+        "on-click": "swaylock -f -c 000000",
+        "format": ""
+    },
+    //   POWER
+    "custom/power": {
+        "tooltip": false,
+        "on-click": "wlogout &",
+        "format": "⏻"
+    },
+    //   DOCKER
+    "custom/docker": {
+        "format": "{}",
+        "return-type": "json",
+        "interval": 10,
+        "exec": "~/.config/waybar/scripts/docker-stats/docker-stats",
+        "tooltip": true
+    },
+    // ☀ WEATHER
+    "custom/weather": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 1800,
+        "exec": "~/.config/waybar/scripts/weather-stats/weather-stats",
+        "return-type": "json"
     }
-}
-
-
-
 }
